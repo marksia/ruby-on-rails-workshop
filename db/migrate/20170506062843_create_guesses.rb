@@ -1,10 +1,10 @@
 class CreateGuesses < ActiveRecord::Migration[5.1]
   def change
     create_table :guesses do |t|
-      t.integer :number
-      t.references :game, foreign_key: true
+      t.integer :number, null: false
+      t.references :game, index: true, foreign_key: true
 
-      t.timestamps
+      t.timestamps null: false
     end
   end
 end

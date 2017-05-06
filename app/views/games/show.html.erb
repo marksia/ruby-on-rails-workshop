@@ -1,23 +1,25 @@
 <p id="notice"><%= notice %></p>
 
-<!-- <p>
-  <strong>Number:</strong>
-  <%= @game.number %>
-</p> -->
-
-<p>
-  <strong>Completed:</strong>
-  <%= @game.completed %>
-</p>
-
-<%= form_for @game.guesses.build,
-  url: game_guesses_path(@game) do |f| %>
-  <p>
-    <strong>Guess:</strong>
-    <%= f.number_field :number %>
-    <%= f.submit %>
-  </p>
-<% end %>
+  <% if @game.completed? %>
+    <p>
+      <strong>Number:</strong>
+      <%= @game.number %>
+    </p>
+    <p>
+      <strong>Guesses:</strong>
+      <%= @game.guesses.count %>
+    </p>
+  <% else %>
+    <%= form_for @game.guesses.build,
+      url: game_guesses_path(@game) do |f| %>
+      <p>
+        <strong>Guess:</strong>
+        <%= f.number_field :number %>
+        <%= f.submit %>
+      </p>
+    <% end %>
+  <% end %>
 
 <%= link_to 'Edit', edit_game_path(@game) %> |
 <%= link_to 'Back', games_path %>
+

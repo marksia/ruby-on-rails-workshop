@@ -1,10 +1,10 @@
 class CreateGames < ActiveRecord::Migration[5.1]
   def change
     create_table :games do |t|
-      t.integer :number
-      t.boolean :completed
+      t.integer :number, null: false
+      t.boolean :completed, null: false, default: false
 
-      t.timestamps
+      t.timestamps null: false
     end
   end
 end
